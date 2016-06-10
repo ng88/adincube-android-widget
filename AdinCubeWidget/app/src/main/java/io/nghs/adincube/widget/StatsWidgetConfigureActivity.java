@@ -29,7 +29,7 @@ public class StatsWidgetConfigureActivity extends Activity
 
             // When the button is clicked, store the string locally
             String widgetText = mAppWidgetText.getText().toString();
-            saveTitlePref(context, mAppWidgetId, widgetText);
+            saveAuthPref(context, mAppWidgetId, widgetText);
 
             // It is the responsibility of the configuration activity to update the app widget
             AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
@@ -49,7 +49,7 @@ public class StatsWidgetConfigureActivity extends Activity
     }
 
     // Write the prefix to the SharedPreferences object for this widget
-    static void saveTitlePref(Context context, int appWidgetId, String text)
+    static void saveAuthPref(Context context, int appWidgetId, String text)
     {
         SharedPreferences.Editor prefs = context.getSharedPreferences(PREFS_NAME, 0).edit();
         prefs.putString(PREF_PREFIX_KEY + appWidgetId, text);
@@ -58,7 +58,7 @@ public class StatsWidgetConfigureActivity extends Activity
 
     // Read the prefix from the SharedPreferences object for this widget.
     // If there is no preference saved, get the default from a resource
-    static String loadTitlePref(Context context, int appWidgetId)
+    static String loadAuthPref(Context context, int appWidgetId)
     {
         SharedPreferences prefs = context.getSharedPreferences(PREFS_NAME, 0);
         String titleValue = prefs.getString(PREF_PREFIX_KEY + appWidgetId, null);
@@ -68,7 +68,7 @@ public class StatsWidgetConfigureActivity extends Activity
         }
         else
         {
-            return context.getString(R.string.appwidget_text);
+            return "";
         }
     }
 
@@ -108,7 +108,7 @@ public class StatsWidgetConfigureActivity extends Activity
             return;
         }
 
-        mAppWidgetText.setText(loadTitlePref(StatsWidgetConfigureActivity.this, mAppWidgetId));
+        mAppWidgetText.setText(loadAuthPref(StatsWidgetConfigureActivity.this, mAppWidgetId));
     }
 }
 
