@@ -6,6 +6,7 @@ import android.content.Context;
 import android.widget.RemoteViews;
 
 import io.nghs.adincube.R;
+import io.nghs.adincube.api.AdinCubeAPI;
 
 /**
  * Implementation of App Widget functionality.
@@ -16,7 +17,6 @@ public class StatsWidget extends AppWidgetProvider
 
     static void updateAppWidget(Context context, AppWidgetManager appWidgetManager, int appWidgetId)
     {
-
         CharSequence widgetText = StatsWidgetConfigureActivity.loadTitlePref(context, appWidgetId);
         // Construct the RemoteViews object
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.stats_widget);
