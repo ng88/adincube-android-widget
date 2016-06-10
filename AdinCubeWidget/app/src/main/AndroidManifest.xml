@@ -8,7 +8,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <receiver android:name=".StatsWidget">
+        <receiver android:name=".widget.StatsWidget">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
@@ -18,7 +18,7 @@
                 android:resource="@xml/stats_widget_info" />
         </receiver>
 
-        <activity android:name=".StatsWidgetConfigureActivity">
+        <activity android:name=".widget.StatsWidgetConfigureActivity">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
             </intent-filter>

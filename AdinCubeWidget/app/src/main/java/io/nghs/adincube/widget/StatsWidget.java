@@ -1,9 +1,11 @@
-package io.nghs.adincube;
+package io.nghs.adincube.widget;
 
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
 import android.content.Context;
 import android.widget.RemoteViews;
+
+import io.nghs.adincube.R;
 
 /**
  * Implementation of App Widget functionality.

@@ -1,4 +1,4 @@
-package io.nghs.adincube;
+package io.nghs.adincube.widget;
 
 import android.app.Activity;
 import android.appwidget.AppWidgetManager;
@@ -9,13 +9,15 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 
+import io.nghs.adincube.R;
+
 /**
  * The configuration screen for the {@link StatsWidget StatsWidget} AppWidget.
  */
 public class StatsWidgetConfigureActivity extends Activity
 {
 
-    private static final String PREFS_NAME = "io.nghs.adincube.StatsWidget";
+    private static final String PREFS_NAME = "StatsWidget";
     private static final String PREF_PREFIX_KEY = "appwidget_";
     int mAppWidgetId = AppWidgetManager.INVALID_APPWIDGET_ID;
     EditText mAppWidgetText;
