@@ -27,6 +27,9 @@ public class AdinCubeAPI
         if(authKey == null || authKey.isEmpty())
             throw new InvalidParameterException();
 
+        if(instances == null)
+            instances = new HashMap<>();
+
         AdinCubeAPI instance = instances.get(authKey);
         if(instance == null)
         {
