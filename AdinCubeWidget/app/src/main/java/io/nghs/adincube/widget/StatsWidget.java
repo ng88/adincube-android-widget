@@ -63,8 +63,7 @@ public class StatsWidget extends AppWidgetProvider
 
     private static class UpdateFromServerTask extends AsyncTask<String, Void, Void>
     {
-        double todayRevenues = 0.0;
-        double yesterdayRevenues = 0.0;
+        double accountRevenues[] = new double[6];
         Context context;
         AppWidgetManager appWidgetManager;
         int appWidgetId;
@@ -85,9 +84,12 @@ public class StatsWidget extends AppWidgetProvider
             api.clearCache();
 
             Calendar cal = Calendar.getInstance();
-            todayRevenues = api.getAccountRevenues(cal.getTime());
-            cal.add(Calendar.DATE, -1);
-            yesterdayRevenues = api.getAccountRevenues(cal.getTime());
+            accountRevenues[0] = api.getAccountRevenues(cal.getTime());
+            for(int i = 1; i < accountRevenues.length; i++)
+            {
+                cal.add(Calendar.DATE, -1);
+                accountRevenues[i] = api.getAccountRevenues(cal.getTime());
+            }
 
             return null;
         }
@@ -99,10 +101,17 @@ public class StatsWidget extends AppWidgetProvider
             // Construct the RemoteViews object
             RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.stats_widget);
 
+            StringBuilder text = new StringBuilder();
 
-            String text = String.format("%.2f", todayRevenues) + "\n" + String.format("%.2f", yesterdayRevenues);
-
-            views.setTextViewText(R.id.appwidget_text, text);
+            for(int i = 0; i < accountRevenues.length; i++)
+            {
+                if(i == 0)
+                    text.append("Today ");
+                else
+                    text.append("D-").append(i).append("    ");
+                text.append(String.format("%.2f", accountRevenues[i])).append('\n');
+            }
+            views.setTextViewText(R.id.appwidget_text, text.toString());
 
             // Instruct the widget manager to update the widget
             appWidgetManager.updateAppWidget(appWidgetId, views);

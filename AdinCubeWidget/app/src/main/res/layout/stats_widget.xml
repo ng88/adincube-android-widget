@@ -14,6 +14,6 @@
         android:background="#09C"
         android:textColor="#ffffff"
         android:textSize="24sp"
-        android:textStyle="bold|italic" />
+        android:textStyle="bold" />
 
 </RelativeLayout>
