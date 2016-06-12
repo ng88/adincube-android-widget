@@ -4,7 +4,9 @@ import android.util.Log;
 
 import org.json.JSONException;
 
+import java.security.InvalidParameterException;
 import java.util.Date;
+import java.util.HashMap;
 
 /**
  * Created by ng on 10/06/16.
@@ -12,30 +14,32 @@ import java.util.Date;
 public class AdinCubeAPI
 {
     static final String LOG_TAG = "ADINCUBE_API";
-    private static AdinCubeAPI instance = null;
+    private static HashMap<String, AdinCubeAPI> instances = null;
     private final ServerInterface server = new ServerInterface();
 
     /**
-     *
+     * Call this with your authorization token
+     * You can get one at https://dashboard.adincube.com/dashboard/#/api/auth
      * @return the instance of the AdinCube API manager
      */
-    public static AdinCubeAPI getInstance()
+    public static AdinCubeAPI getInstance(String authKey)
     {
+        if(authKey == null || authKey.isEmpty())
+            throw new InvalidParameterException();
+
+        AdinCubeAPI instance = instances.get(authKey);
         if(instance == null)
+        {
             instance = new AdinCubeAPI();
+            instance.server.setAPIKey(authKey);
+            instances.put(authKey, instance);
+        }
+
         return instance;
     }
 
     private AdinCubeAPI() {}
 
-    /**
-     * Call this with your authorization token
-     * You can get one at https://dashboard.adincube.com/dashboard/#/api/auth
-     */
-    public void setAuthToken(String token)
-    {
-        server.setAPIKey(token);
-    }
 
     public Balance getAccountBalance()
     {

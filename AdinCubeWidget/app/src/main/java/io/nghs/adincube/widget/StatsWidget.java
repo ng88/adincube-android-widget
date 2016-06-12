@@ -81,8 +81,7 @@ public class StatsWidget extends AppWidgetProvider
             if(p[0] == null || p[0].isEmpty())
                 return null;
 
-            AdinCubeAPI api = AdinCubeAPI.getInstance();
-            api.setAuthToken(p[0]);
+            AdinCubeAPI api = AdinCubeAPI.getInstance(p[0]);
             api.clearCache();
 
             Calendar cal = Calendar.getInstance();
