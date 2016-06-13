@@ -50,7 +50,7 @@ class ServerInterface
         Rates r = cache.get(cacheKey);
         if(r == null)
         {
-            String s = getJSON(dateStr);
+            String s = getJSON(dateStr + "?base=" + baseCurrency);
             if(s != null)
             {
                 r = new Rates(new JSONObject(s));

@@ -48,14 +48,22 @@ public class Rates
         return rates.length();
     }
 
-    public Iterator<String> getRatesCurrency()
+    public Iterator<String> getCurrencies()
     {
         return rates.keys();
     }
 
     public double getRate(String currency)
     {
-        return getDoubleValue(currency);
+        try
+        {
+            return rates.getDouble(currency);
+        }
+        catch(JSONException e)
+        {
+            Log.d(FixerAPI.LOG_TAG, "getRate", e);
+            return Double.NaN;
+        }
     }
 
     private String getStringValue(String attr)
@@ -71,18 +79,6 @@ public class Rates
         }
     }
 
-    private double getDoubleValue(String attr)
-    {
-        try
-        {
-            return data.getDouble(attr);
-        }
-        catch(JSONException e)
-        {
-            Log.d(FixerAPI.LOG_TAG, "convert", e);
-            return Double.NaN;
-        }
-    }
 
     private Date getDateValue(String attr)
     {

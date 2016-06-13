@@ -17,11 +17,52 @@
         android:layout_height="wrap_content"
         android:inputType="text" />
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:text="@string/revenues_choice" />
+
+    <CheckBox
+        android:id="@+id/appwidget_includeadmob"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/include_admob"/>
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:text="@string/currency_choice" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/appwidget_currency"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:layout_marginRight="5dp"
+            android:layout_gravity="center"/>
+
+        <Button
+            android:id="@+id/appwidget_currency_btn"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/change"
+            android:layout_gravity="center"/>
+    </LinearLayout>
+
     <Button
         android:id="@+id/add_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="32dp"
         android:text="@string/add_widget" />
 
 </LinearLayout>
